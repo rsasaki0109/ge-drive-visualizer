@@ -1,9 +1,10 @@
-function kmlstr = AnimatedUpdate(modelid,dulation,loc,ori)
+function kmlstr = AnimatedUpdateModel(modelid,dulation,loc,ori,delay)
 arguments
     modelid 
     dulation 
     loc 
     ori 
+    delay = 0.0
 end
 
 kmlstr = [];
@@ -26,4 +27,5 @@ kmlstr = [kmlstr; sprintf("</Orientation>")];
 
 kmlstr = [kmlstr; sprintf("</Change>")];
 kmlstr = [kmlstr; sprintf("</Update>")];
+kmlstr = [kmlstr; sprintf("<gx:delayedStart>%.3f</gx:delayedStart>",delay)];
 kmlstr = [kmlstr; sprintf("</gx:AnimatedUpdate>")];

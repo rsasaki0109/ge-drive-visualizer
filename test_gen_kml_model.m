@@ -71,8 +71,8 @@ kml_tour = [];
 kml_tour = [kml_tour; kml.FlyTo(kml_look0)]; % Fly to initial camera position
 for i=2:n
     % 3D model animation
-    kml_tour = [kml_tour; kml.AnimatedUpdate(name1, dt/sppedup, loc1(i,:), ori1(i,:))];
-    kml_tour = [kml_tour; kml.AnimatedUpdate(name2, dt/sppedup, loc2(i,:), ori2(i,:))];
+    kml_tour = [kml_tour; kml.AnimatedUpdateModel(name1, dt/sppedup, loc1(i,:), ori1(i,:))];
+    kml_tour = [kml_tour; kml.AnimatedUpdateModel(name2, dt/sppedup, loc2(i,:), ori2(i,:))];
     
     % Move camera
     cam.head = ref(i,11);
