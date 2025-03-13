@@ -1,12 +1,14 @@
-function kmlstr = Tour(kmlstr,name)
+function kmlstr = WrapTour(kmlstr, name)
+% Wrap with Tour tag
+% Author: Taro Suzuki
 arguments
-    kmlstr 
-    name
+    kmlstr (:,1) string
+    name   (1,:) char
 end
 
 head = [];
 head = [head; sprintf("<gx:Tour>")];
-head = [head; sprintf("<name>%s</name>",name)];
+head = [head; sprintf("<name>%s</name>", name)];
 head = [head; sprintf("<gx:Playlist>")];
 
 foot = [];
