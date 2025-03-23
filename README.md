@@ -9,8 +9,9 @@
 </p>
 
 ## Visualization of vehicle driving and lidar data
+https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.m4v?raw=true
+
 <p align="center">
-  <img width="460" src="https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.m4v?raw=true">
   <div><video controls src="https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.m4v?raw=true" muted="false"></video></div>
 </p>
 
