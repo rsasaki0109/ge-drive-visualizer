@@ -2,23 +2,14 @@
 - This project visualizes the results of robot and vehicle position and pose estimation and lidar observations using Google Earth. This is very useful for evaluating and demonstrating the results of localization and SLAM.
 - KML files can be generated and videos can be recorded using Google Earth functions.
 
+![](https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/ge-drive-visualizer.gif?raw=true)
+
 # Examples
 ## Comparison of two types of position estimations
-<p align="center">
-  <img width="460" src="https://github.com/taroz/Misc/blob/master/data/ge-gnss-visibility/fisheye.gif?raw=true">
-</p>
 
 ## Visualization of vehicle driving and lidar data
-https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.mp4?raw=true
-
-<p align="center">
-  <div><video controls src="https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.mp4?raw=true" muted="false"></video></div>
-</p>
 
 ## Drone flight and visualization of lidar data
-<p align="center">
-  <img width="460" src="https://github.com/taroz/Misc/blob/master/data/ge-gnss-visibility/fisheye_satellite_nlos.gif?raw=true">
-</p>
 
 # Requirements
 - MATLAB (>R2022a)
