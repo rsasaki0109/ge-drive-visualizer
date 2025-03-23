@@ -3,20 +3,18 @@ function Out(fname, kmlstr, kmlname)
 % Author: Taro Suzuki
 arguments
     fname   (1,:) char
-    kmlstr  (:,1) string 
+    kmlstr  (:,1) string
     kmlname (1,:) char = fname
 end
 
-fid = fopen(fname, "w");
-fprintf(fid,"<?xml version=""1.0"" encoding=""UTF-8""?>\n");
-fprintf(fid,"<kml xmlns=""http://www.opengis.net/kml/2.2"" xmlns:gx=""http://www.google.com/kml/ext/2.2"">\n");
-fprintf(fid,"<Document>\n");
-fprintf(fid,"<name>%s</name>\n", kmlname);
+str = ["<?xml version=""1.0"" encoding=""UTF-8""?>";
+       "<kml xmlns=""http://www.opengis.net/kml/2.2"" xmlns:gx=""http://www.google.com/kml/ext/2.2"">";
+       "<Document>";
+       "<name>"+kmlname+"</name>"];
+writelines(str, fname);
 
-for i=1:size(kmlstr,1)
-    fprintf(fid,"%s\n", kmlstr(i));
-end
+writelines(kmlstr, kmlname,"WriteMode","append");
 
-fprintf(fid,"</Document>\n");
-fprintf(fid,"</kml>\n");
-fclose(fid);
+str = ["</Document>";
+       "</kml>"];
+writelines(str, kmlname,"WriteMode","append");

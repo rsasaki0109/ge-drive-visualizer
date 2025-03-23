@@ -1,28 +1,22 @@
-function kmlstr = AnimatedUpdatePoint(pointidx, dulation, loc, delay, col, alpha, draworder)
+function kmlstr = AnimatedUpdatePoint(pointid, dulation, loc, delay, col, alpha)
 % Create AnimatedUpdate for Point
 % Author: Taro Suzuki
 arguments
-    pointidx (:,:) double % Point index
+    pointid  (:,:) string % Point ID
     dulation (1,1) double
     loc      (:,3) double % [Latitude, Longitude, Altitude] (deg,deg,m)
     delay    (1,1) double = 0.0
     col      (:,3) double = [] % [red, green, blue] (0.0 to 1.0)
     alpha    (1,1) double = [] % transparent (0.0 to 1.0)
 end
-
-% Convert point index to point ID
-if size(pointidx, 1) < size(pointidx, 2)
-    pointidx = pointidx';
-end
-pointid = string(num2str(pointidx, "%04d"));
 npoint = length(pointid);
 
 % Convert color to KML HEX format
 if ~isempty(col)
     if size(col,1)==1 && npoint>1
-        col = repmat(col,npoint,1);
+        col = repmat(col, [npoint 1]);
     end
-    chex = kml.col2hex(col,alpha);
+    chex = kml.col2hex(col, alpha);
 end
 
 kmlstr = [];
