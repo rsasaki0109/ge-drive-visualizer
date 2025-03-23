@@ -13,7 +13,7 @@ load ./data/drone/lidar_data
 
 %% Lidar preprocessing
 n = length(pc_enu); % Number of pointcloud
-dt = 1.0; % (s) pointcloud is acquired at 1 Hz
+dt = 0.5; % (s) pointcloud is acquired at 2 Hz
 
 % Pointcloud coordinate conversion
 for i=1:n
@@ -24,7 +24,7 @@ max_npt = max(npt); % maximum number of points
 
 %% KML settings
 % Number of epochs
-nep = 300; % 10 seconds (10 Hz)
+nep = 300; % 150 seconds (2 Hz)
 
 % Vehicle 3D model
 vehicle_model = "model/drone.dae";
@@ -38,7 +38,7 @@ cam.dz = 50; % m
 rotm = @(x) [cosd(x) -sind(x); sind(x) cosd(x)];
 
 % Animation parameters
-sppedup = 10;
+sppedup = 5;
 
 % Line parameters
 lw = 2; % Line width
@@ -71,7 +71,7 @@ pos_cam = pos_veh.select(1);
 dxyz = [(rotm(-cam.head+90)*[cam.dx; 0])' cam.dz];
 pos_cam.addOffset(dxyz);
 cloc = [pos_cam.lat pos_cam.lon pos_cam.orthometric];
-kml_look0 = kml.Camera(cloc, cam, "absolute"); 
+kml_camera0 = kml.Camera(cloc, cam, "absolute"); 
 
 % 3D model at initial position
 kml_model = kml.Model("Vehicle", vehicle_model, vloc(1,:), vori(1,:), vehicle_scale, "absolute");
@@ -85,8 +85,8 @@ kml_line = kml.Line("Line", vloc, lw, lcol, 1, 0, "absolute");
 
 % Generate KML Tour
 kml_tour = [];
-kml_tour = [kml_tour; kml.WrapFlyTo(kml_look0)]; % Fly to initial camera position
-for i=progress(2:nep)
+kml_tour = [kml_tour; kml.WrapFlyTo(kml_camera0)]; % Fly to initial camera position
+for i=2:nep
     % Update 3D model
     kml_tour = [kml_tour; kml.AnimatedUpdateModel("Vehicle", dt/sppedup, vloc(i,:), vori(i,:))];
 
@@ -102,11 +102,13 @@ for i=progress(2:nep)
     pos_cam.addOffset(dxyz);
     cloc = [pos_cam.lat pos_cam.lon pos_cam.orthometric];
     kml_tour = [kml_tour; kml.WrapFlyTo(kml.Camera(cloc, cam, "absolute"), dt/sppedup)];
+
+    fprintf("%d/%d...\n",i,nep);
 end
 kml_tour = kml.WrapTour(kml_tour, "DriveTour");
 
 %% Generate KML file
-kml.Out(mfilename+".kml", [kml_look0; kml_model; kml_lidar; kml_line; kml_tour]);
+kml.Out(mfilename+".kml", [kml_camera0; kml_model; kml_lidar; kml_line; kml_tour]);
 
 % Convert to KMZ file
 zip(mfilename, mfilename+".kml"); % .kml to .zip

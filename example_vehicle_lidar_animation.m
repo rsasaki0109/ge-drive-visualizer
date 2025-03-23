@@ -86,7 +86,7 @@ kml_line = kml.Line("Line", vloc, lw, lcol);
 % Generate KML Tour
 kml_tour = [];
 kml_tour = [kml_tour; kml.WrapFlyTo(kml_look0)]; % Fly to initial camera position
-for i=progress(2:nep)
+for i=2:nep
     % Update 3D model
     kml_tour = [kml_tour; kml.AnimatedUpdateModel("Vehicle", dt/sppedup, vloc(i,:), vori(i,:))];
 
@@ -98,6 +98,8 @@ for i=progress(2:nep)
     % Move camera
     cam.head = vori(i,1);
     kml_tour = [kml_tour; kml.WrapFlyTo(kml.LookAt(vloc(i,:), cam, "absolute"), dt/sppedup)];
+
+    fprintf("%d/%d...\n",i,nep);
 end
 kml_tour = kml.WrapTour(kml_tour, "DriveTour");
 

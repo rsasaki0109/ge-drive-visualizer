@@ -56,7 +56,7 @@ kml_point = kml.Point("Point", vloc, pscale, pcol, palpha);
 % Generate KML Tour
 kml_tour = [];
 kml_tour = [kml_tour; kml.WrapFlyTo(kml_look0)]; % Fly to initial camera position
-for i=progress(2:n)
+for i=2:n
     % Update 3D model
     kml_tour = [kml_tour; kml.AnimatedUpdateModel("Vehicle", dt/sppedup, vloc(i,:), vori(i,:))];
 
