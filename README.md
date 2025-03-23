@@ -1,26 +1,24 @@
 # Google Earth-based Drive Visualizer
-- This project visualizes the results of robot and vehicle position and pose estimation and lidar observations using Google Earth. This is very useful for evaluating and demonstrating the results of localization and SLAM.
-- KML files can be generated and videos can be recorded using Google Earth functions.
-
 ![](https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/ge-drive-visualizer.gif?raw=true)
+- This project visualizes the results of robot and vehicle position and pose estimation and lidar observations using Google Earth. This is very useful for evaluating and demonstrating the results of localization and SLAM.
 
 # Examples
 ## Comparison of two types of position estimations
 `example_compare_two_positions.m`
 
-https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/compare.mp4?raw=true
+https://github.com/user-attachments/assets/44f42e9e-c169-410e-93d6-784791bb7219
 
 ## Visualization of vehicle driving and lidar data
 `example_vehicle_lidar_animation.m`
 
-https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.mp4?raw=true
+https://github.com/user-attachments/assets/7cf90a3f-3ca4-4d13-b62e-40bf3530ce5c
 
-https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar_top.mp4?raw=true
+https://github.com/user-attachments/assets/cecb54b5-2ec8-4ae7-809b-ce55b559873b
 
 ## Drone flight and visualization of lidar data
 `example_drone_lidar_animation.m`
 
-https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/drone_lidar.mp4?raw=true
+https://github.com/user-attachments/assets/cd34e387-e564-4b97-98db-b750061653ff
 
 # Requirements
 - MATLAB (>R2022a)
@@ -64,8 +62,8 @@ Execute the MATLAB script. A `[m-filename].kmz` file will be generated afterward
 
 # Note
 - In the example of Lidar data animation (`xxx_lidar_animation.m`), there are a large number of objects to be visualized, so there are limits to how much can be displayed in Google Earth
-- Long-term visualization is difficult
-  - For animation, the limit is around 4000 points x 150 frames per frame
+- Long-term lidar data visualization is difficult
+  - For animation, the limit is around 4000 points x 150 frames
 - It is necessary to increase the memory allocated to Google Earth
   - `Preferences->Cache->Memory Cache Size (MB): 1024`
   - `Preferences->Cache->Disk Cache Size (MB): 2048`
