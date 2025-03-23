@@ -6,10 +6,21 @@
 
 # Examples
 ## Comparison of two types of position estimations
+`example_compare_two_positions.m`
+
+https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/compare.mp4
 
 ## Visualization of vehicle driving and lidar data
+`example_vehicle_lidar_animation.m`
+
+https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.mp4
+
+https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar_top.mp4
 
 ## Drone flight and visualization of lidar data
+`example_drone_lidar_animation.m`
+
+https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/drone_lidar.mp4
 
 # Requirements
 - MATLAB (>R2022a)
