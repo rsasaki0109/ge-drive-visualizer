@@ -9,10 +9,10 @@
 </p>
 
 ## Visualization of vehicle driving and lidar data
-https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.m4v?raw=true
+https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.mp4?raw=true
 
 <p align="center">
-  <div><video controls src="https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.m4v?raw=true" muted="false"></video></div>
+  <div><video controls src="https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/vehicle_lidar.mp4?raw=true" muted="false"></video></div>
 </p>
 
 ## Drone flight and visualization of lidar data
