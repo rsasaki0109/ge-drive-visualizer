@@ -1,0 +1,2 @@
+add_executable(example_vehicle_animation example_vehicle_animation.cpp)
+target_link_libraries(example_vehicle_animation PRIVATE gnss_kml_lib)
