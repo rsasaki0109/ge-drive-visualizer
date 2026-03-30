@@ -4,7 +4,7 @@
 
 # Examples
 ## Comparison of two types of position estimations
-`example_compare_two_positions.m`
+`example_compare_two_positions.m` / `example_vehicle_animation.cpp`
 
 https://github.com/user-attachments/assets/44f42e9e-c169-410e-93d6-784791bb7219
 
@@ -20,19 +20,97 @@ https://github.com/user-attachments/assets/cecb54b5-2ec8-4ae7-809b-ce55b559873b
 
 https://github.com/user-attachments/assets/cd34e387-e564-4b97-98db-b750061653ff
 
-# Requirements
+# C++ Library
+
+A full C++17 port of the MATLAB KML generation library. Can also be used as a ROS 2 package.
+
+## Build (CMake)
+```bash
+git clone https://github.com/rsasaki0109/ge-drive-visualizer.git
+cd ge-drive-visualizer
+mkdir build && cd build
+cmake .. -DBUILD_EXAMPLES=ON -DBUILD_TESTS=ON
+make -j$(nproc)
+ctest
+```
+
+## Build (ROS 2 / colcon)
+```bash
+cd ~/your_ws/src
+git clone https://github.com/rsasaki0109/ge-drive-visualizer.git
+cd ~/your_ws
+colcon build --packages-select ge_drive_visualizer
+source install/setup.bash
+```
+
+## C++ Usage Example
+```cpp
+#include <libgnss++/kml/kml.hpp>
+using namespace libgnss::kml;
+
+int main() {
+    std::vector<Location> trajectory = {
+        {35.6877, 140.0194, 0.0},
+        {35.6879, 140.0195, 0.0},
+    };
+
+    auto look = createLookAt(trajectory[0],
+                             LookAtParams(0, 50, 90),
+                             AltitudeMode::Absolute);
+    auto model = createModel("Vehicle", "model/vehicle.dae",
+                             trajectory[0], Orientation(0, 0, 0),
+                             1.0, AltitudeMode::Absolute);
+    auto line = createLine("Path", trajectory,
+                           3.0, Color(1, 0, 0), 0.8);
+
+    std::string tour;
+    tour += wrapFlyTo(look);
+    for (size_t i = 1; i < trajectory.size(); ++i) {
+        tour += animatedUpdateModel("Vehicle", 0.2,
+                    trajectory[i], Orientation(45, 0, 0));
+        tour += wrapFlyTo(
+            createLookAt(trajectory[i], LookAtParams(45, 50, 90),
+                         AltitudeMode::Absolute), 0.2);
+    }
+    tour = wrapTour(tour, "DriveTour");
+
+    writeKml("output.kml", look + model + line + tour);
+    return 0;
+}
+```
+
+## C++ API Overview
+
+| Category | Functions |
+|----------|-----------|
+| **Elements** | `createPoints()`, `createLine()`, `createCubes()`, `createModel()`, `createScreenOverlay()` |
+| **Animation** | `animatedUpdateModel()`, `animatedUpdatePoints()`, `animatedUpdateCubes()` |
+| **Camera** | `createLookAt()`, `createCamera()` |
+| **Tour** | `wrapTour()`, `wrapFlyTo()`, `wrapFolder()`, `createWait()` |
+| **Utilities** | `col2hex()`, `wrapTo720()`, `unwrap360()`, `enu2llh()`, `calcCubeVertices()` |
+| **Output** | `writeKml()`, `writeKmz()` |
+
+## Integration with libgnss++
+```bash
+cp -r include/libgnss++/kml/  /path/to/gnssplusplus-library/include/libgnss++/kml/
+cp -r src/kml/                /path/to/gnssplusplus-library/src/kml/
+# Then add sources to gnssplusplus-library's CMakeLists.txt (same pattern as gnss_visibility_lib)
+```
+
+# MATLAB
+
+## Requirements
 - MATLAB (>R2022a)
   - `Image Processing Toolbox` and `Computer Vision Toolbox` are required for `example_vehicle_lidar.m` and `example_vehicle_lidar_animation.m`
 - [MatRTKLIB](https://github.com/taroz/MatRTKLIB)
 - [Google Earth Pro](https://www.google.com/earth/about/versions/#earth-pro)
 
-# How to use
 ## Setup
 - Install [Google Earth Pro](https://www.google.com/earth/about/versions/#earth-pro)
 - Clone or download [MatRTKLIB](https://github.com/taroz/MatRTKLIB) and add to path in MATLAB
 - Clone or download **ge-drive-visualizer**
 
-## 1. KML generation
+## KML generation
 Execute the MATLAB script. A `[m-filename].kmz` file will be generated afterwards.
 - `example_compare_two_positions.m`: Comparison of two types of position estimations
 - `example_drone_lidar_animation.m`: Animation of a drone flight and Lidar data
@@ -40,25 +118,27 @@ Execute the MATLAB script. A `[m-filename].kmz` file will be generated afterward
 - `example_vehicle_lidar.m`: Display of vehicle model and Lidar data
 - `example_vehicle_lidar_animation.m`: Animation of vehicle driving and Lidar data
 
-## 2. Open `[m-filename].kmz` in Google Earth Pro
+# Google Earth Pro Setup
+
+## 1. Open `[filename].kmz` in Google Earth Pro
 - Check `Photorealistic` and `Terrain` in Layers
 
 <img width="600" src="https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/cap1.jpg?raw=true">
 
-## 3. Tools->Movie Maker
+## 2. Tools->Movie Maker
 - Select `DriveTour`
 - Enter the name of the file to save to
 - Set the video recording settings as you want
 
-![](https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/cap2.jpg?raw=true) 
+![](https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/cap2.jpg?raw=true)
 
-## 4. Click `Create Movie`
+## 3. Click `Create Movie`
 - Usually this process takes quite a while!
   - In my experience, running Google Earth in a Linux (Ubuntu) environment is much faster than running it in Windows
   - On Windows, it is faster to use OpenGL instead of DirectX as the graphics mode for Google Earth
   - The type of graphics card you have can also affect performance
 
-![](https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/cap3.jpg?raw=true) 
+![](https://github.com/taroz/Misc/blob/master/data/ge-drive-visualizer/cap3.jpg?raw=true)
 
 # Note
 - In the example of Lidar data animation (`xxx_lidar_animation.m`), there are a large number of objects to be visualized, so there are limits to how much can be displayed in Google Earth

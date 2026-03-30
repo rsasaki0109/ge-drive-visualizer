@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ge-drive-visualizer | Google Earth Drive Visualization Library</title>
+    <meta name="description" content="C++17 / ROS 2 library for generating 3D drive visualizations in Google Earth. Animate vehicles, drones, and LiDAR point clouds with cinematic camera tours.">
+    <meta property="og:title" content="ge-drive-visualizer">
+    <meta property="og:description" content="Generate stunning 3D drive visualizations in Google Earth with C++, ROS 2, or MATLAB.">
+    <meta property="og:image" content="assets/hero_poster.jpg">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">&#127758;</span>
+                ge-drive-visualizer
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#demos">Demos</a>
+                <a href="#api">API</a>
+                <a href="#quickstart">Quick Start</a>
+                <a href="https://github.com/rsasaki0109/ge-drive-visualizer" class="nav-github" target="_blank" rel="noopener" aria-label="View source on GitHub">
+                    <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-badge">C++ / ROS 2 / MATLAB</div>
+            <h1>ge-drive-visualizer</h1>
+            <p class="hero-subtitle">
+                Generate stunning 3D drive visualizations in Google Earth.<br>
+                Animate vehicles, drones, and LiDAR point clouds with cinematic camera tours.
+            </p>
+            <div class="hero-actions">
+                <a href="#quickstart" class="btn btn-primary">Get Started</a>
+                <a href="https://github.com/rsasaki0109/ge-drive-visualizer" class="btn btn-secondary" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+            <div class="hero-image">
+                <video autoplay loop muted playsinline poster="assets/hero_poster.jpg" aria-label="Drive visualization demo showing a vehicle trajectory in Google Earth">
+                    <source src="assets/hero.webm" type="video/webm">
+                    <source src="assets/hero.mp4" type="video/mp4">
+                    <img src="assets/hero_poster.jpg" alt="Drive Visualization Demo">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#128663;</div>
+                    <h3>3D Vehicle Animation</h3>
+                    <p>Animate vehicle and drone models along trajectories with smooth camera tracking and orientation control.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128225;</div>
+                    <h3>LiDAR Point Clouds</h3>
+                    <p>Visualize LiDAR scans as colored 3D cubes with intensity-based coloring, synchronized with vehicle motion.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#127909;</div>
+                    <h3>Cinematic Tours</h3>
+                    <p>Auto-generate KML tours with smooth camera fly-throughs. Export movies directly from Google Earth Pro.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128200;</div>
+                    <h3>Position Comparison</h3>
+                    <p>Compare multiple positioning methods (RTK, SPP, reference) side-by-side with color-coded trajectories.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#9881;</div>
+                    <h3>C++17 Library</h3>
+                    <p>Modern C++17 implementation with clean API. Zero dependencies beyond the standard library.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#129302;</div>
+                    <h3>ROS 2 Ready</h3>
+                    <p>Ships with <code>package.xml</code> and <code>ament_cmake</code> support. Build with <code>colcon</code> out of the box.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demos -->
+    <section id="demos" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Demos</h2>
+
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>Position Comparison</h3>
+                    <span class="demo-tag">Reference vs SPP</span>
+                </div>
+                <div class="demo-video">
+                    <video controls muted playsinline preload="metadata">
+                        <source src="https://github.com/user-attachments/assets/44f42e9e-c169-410e-93d6-784791bb7219" type="video/mp4">
+                    </video>
+                    <p class="demo-video-fallback">
+                        Video may not load outside GitHub. <a href="https://github.com/rsasaki0109/ge-drive-visualizer#examples" target="_blank" rel="noopener">View on GitHub</a>
+                    </p>
+                </div>
+                <p class="demo-desc">Side-by-side comparison of reference trajectory (red) and Single Point Positioning (blue) with animated vehicle models.</p>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>Vehicle + LiDAR Animation</h3>
+                    <span class="demo-tag">3D Point Cloud</span>
+                </div>
+                <div class="demo-video">
+                    <video controls muted playsinline preload="metadata">
+                        <source src="https://github.com/user-attachments/assets/7cf90a3f-3ca4-4d13-b62e-40bf3530ce5c" type="video/mp4">
+                    </video>
+                    <p class="demo-video-fallback">
+                        Video may not load outside GitHub. <a href="https://github.com/rsasaki0109/ge-drive-visualizer#examples" target="_blank" rel="noopener">View on GitHub</a>
+                    </p>
+                </div>
+                <p class="demo-desc">Vehicle driving animation with real-time LiDAR point cloud visualization. Points colored by intensity.</p>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>Vehicle LiDAR (Alternate View)</h3>
+                    <span class="demo-tag">Close-up</span>
+                </div>
+                <div class="demo-video">
+                    <video controls muted playsinline preload="metadata">
+                        <source src="https://github.com/user-attachments/assets/cecb54b5-2ec8-4ae7-809b-ce55b559873b" type="video/mp4">
+                    </video>
+                    <p class="demo-video-fallback">
+                        Video may not load outside GitHub. <a href="https://github.com/rsasaki0109/ge-drive-visualizer#examples" target="_blank" rel="noopener">View on GitHub</a>
+                    </p>
+                </div>
+                <p class="demo-desc">Close-up view of LiDAR point cloud visualization with intensity-based coloring around the vehicle.</p>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-header">
+                    <h3>Drone Flight + LiDAR</h3>
+                    <span class="demo-tag">Aerial</span>
+                </div>
+                <div class="demo-video">
+                    <video controls muted playsinline preload="metadata">
+                        <source src="https://github.com/user-attachments/assets/cd34e387-e564-4b97-98db-b750061653ff" type="video/mp4">
+                    </video>
+                    <p class="demo-video-fallback">
+                        Video may not load outside GitHub. <a href="https://github.com/rsasaki0109/ge-drive-visualizer#examples" target="_blank" rel="noopener">View on GitHub</a>
+                    </p>
+                </div>
+                <p class="demo-desc">Drone flight trajectory with airborne LiDAR data, featuring free camera control for immersive viewing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Reference -->
+    <section id="api" class="section">
+        <div class="container">
+            <h2 class="section-title">C++ API Reference</h2>
+            <p class="section-desc">All functions live in <code>libgnss::kml</code> namespace. Include <code>&lt;libgnss++/kml/kml.hpp&gt;</code> for everything.</p>
+
+            <div class="api-grid">
+                <div class="api-group">
+                    <h3>Types</h3>
+                    <table class="api-table">
+                        <tr><td><code>Location</code></td><td>Geographic position (lat, lon, alt)</td></tr>
+                        <tr><td><code>Orientation</code></td><td>3D angles (heading, tilt, roll)</td></tr>
+                        <tr><td><code>Color</code></td><td>RGB color (0.0 - 1.0)</td></tr>
+                        <tr><td><code>LookAtParams</code></td><td>LookAt camera (heading, tilt, range)</td></tr>
+                        <tr><td><code>CameraParams</code></td><td>Free camera (heading, tilt, roll)</td></tr>
+                        <tr><td><code>AltitudeMode</code></td><td>ClampToGround / RelativeToGround / Absolute</td></tr>
+                    </table>
+                </div>
+
+                <div class="api-group">
+                    <h3>Static Elements</h3>
+                    <table class="api-table">
+                        <tr><td><code>createPoints()</code></td><td>Point marker placemarks</td></tr>
+                        <tr><td><code>createLine()</code></td><td>LineString trajectory</td></tr>
+                        <tr><td><code>createCubes()</code></td><td>3D polygon cubes (for LiDAR)</td></tr>
+                        <tr><td><code>createModel()</code></td><td>3D DAE model placemark</td></tr>
+                        <tr><td><code>createScreenOverlay()</code></td><td>Screen overlay image (legend)</td></tr>
+                    </table>
+                </div>
+
+                <div class="api-group">
+                    <h3>Animation</h3>
+                    <table class="api-table">
+                        <tr><td><code>animatedUpdateModel()</code></td><td>Move/rotate 3D model</td></tr>
+                        <tr><td><code>animatedUpdatePoints()</code></td><td>Move points with color change</td></tr>
+                        <tr><td><code>animatedUpdateCubes()</code></td><td>Move cubes with visibility toggle</td></tr>
+                    </table>
+                </div>
+
+                <div class="api-group">
+                    <h3>Camera & Tour</h3>
+                    <table class="api-table">
+                        <tr><td><code>createLookAt()</code></td><td>Target-relative camera view</td></tr>
+                        <tr><td><code>createCamera()</code></td><td>Free-position camera view</td></tr>
+                        <tr><td><code>wrapTour()</code></td><td>Create gx:Tour animation</td></tr>
+                        <tr><td><code>wrapFlyTo()</code></td><td>Smooth camera transition</td></tr>
+                        <tr><td><code>wrapFolder()</code></td><td>Organize elements in folder</td></tr>
+                        <tr><td><code>createWait()</code></td><td>Pause in animation</td></tr>
+                    </table>
+                </div>
+
+                <div class="api-group">
+                    <h3>Utilities</h3>
+                    <table class="api-table">
+                        <tr><td><code>col2hex()</code></td><td>RGB to KML ABGR hex string</td></tr>
+                        <tr><td><code>wrapTo720()</code></td><td>Wrap angle to [-360, 360]</td></tr>
+                        <tr><td><code>unwrap360()</code></td><td>Remove heading discontinuities</td></tr>
+                        <tr><td><code>enu2llh()</code></td><td>ENU offset to geodetic (WGS84)</td></tr>
+                        <tr><td><code>calcCubeVertices()</code></td><td>Cube geometry in geodetic coords</td></tr>
+                    </table>
+                </div>
+
+                <div class="api-group">
+                    <h3>Output</h3>
+                    <table class="api-table">
+                        <tr><td><code>writeKml()</code></td><td>Write .kml file</td></tr>
+                        <tr><td><code>writeKmz()</code></td><td>Write compressed .kmz file</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <h3 class="api-mapping-title">MATLAB &rarr; C++ Mapping</h3>
+            <div class="mapping-scroll">
+                <table class="mapping-table">
+                    <thead>
+                        <tr><th>MATLAB (<code>kml.*</code>)</th><th>C++ (<code>libgnss::kml::</code>)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>kml.Point()</code></td><td><code>createPoints()</code></td></tr>
+                        <tr><td><code>kml.Line()</code></td><td><code>createLine()</code></td></tr>
+                        <tr><td><code>kml.Cube()</code></td><td><code>createCubes()</code></td></tr>
+                        <tr><td><code>kml.Model()</code></td><td><code>createModel() / createModels()</code></td></tr>
+                        <tr><td><code>kml.AnimatedUpdateModel()</code></td><td><code>animatedUpdateModel()</code></td></tr>
+                        <tr><td><code>kml.AnimatedUpdatePoint()</code></td><td><code>animatedUpdatePoints()</code></td></tr>
+                        <tr><td><code>kml.AnimatedUpdateCube()</code></td><td><code>animatedUpdateCubes()</code></td></tr>
+                        <tr><td><code>kml.LookAt()</code></td><td><code>createLookAt()</code></td></tr>
+                        <tr><td><code>kml.Camera()</code></td><td><code>createCamera()</code></td></tr>
+                        <tr><td><code>kml.WrapTour()</code></td><td><code>wrapTour()</code></td></tr>
+                        <tr><td><code>kml.WrapFlyTo()</code></td><td><code>wrapFlyTo()</code></td></tr>
+                        <tr><td><code>kml.Out()</code></td><td><code>writeKml() / writeKmz()</code></td></tr>
+                        <tr><td><code>rtklib.enu2llh()</code></td><td><code>enu2llh()</code> (built-in WGS84)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="quickstart" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="cpp">C++ (CMake)</button>
+                <button class="tab" data-tab="ros2">ROS 2 (colcon)</button>
+                <button class="tab" data-tab="matlab">MATLAB</button>
+            </div>
+
+            <div class="tab-content active" id="tab-cpp">
+                <h3>Build</h3>
+<pre><code>git clone https://github.com/rsasaki0109/ge-drive-visualizer.git
+cd ge-drive-visualizer
+mkdir build && cd build
+cmake .. -DBUILD_EXAMPLES=ON -DBUILD_TESTS=ON
+make -j$(nproc)
+ctest</code></pre>
+
+                <h3>Usage Example</h3>
+<pre><code class="lang-cpp">#include &lt;libgnss++/kml/kml.hpp&gt;
+using namespace libgnss::kml;
+
+int main() {
+    // Define trajectory
+    std::vector&lt;Location&gt; trajectory = {
+        {35.6877, 140.0194, 0.0},
+        {35.6879, 140.0195, 0.0},
+        {35.6881, 140.0196, 0.0},
+    };
+
+    // Create elements
+    auto look = createLookAt(trajectory[0],
+                             LookAtParams(0, 50, 90),
+                             AltitudeMode::Absolute);
+
+    auto model = createModel("Vehicle", "model/vehicle.dae",
+                             trajectory[0], Orientation(0, 0, 0),
+                             1.0, AltitudeMode::Absolute);
+
+    auto line = createLine("Path", trajectory,
+                           3.0, Color(1, 0, 0), 0.8);
+
+    // Build animation tour
+    std::string tour;
+    tour += wrapFlyTo(look);
+    for (size_t i = 1; i &lt; trajectory.size(); ++i) {
+        tour += animatedUpdateModel("Vehicle", 0.2,
+                    trajectory[i], Orientation(45, 0, 0));
+        LookAtParams cam(45, 50, 90);
+        tour += wrapFlyTo(
+            createLookAt(trajectory[i], cam,
+                         AltitudeMode::Absolute), 0.2);
+    }
+    tour = wrapTour(tour, "DriveTour");
+
+    // Write output
+    writeKml("output.kml", look + model + line + tour);
+    return 0;
+}</code></pre>
+
+                <h3>Link in your CMake project</h3>
+<pre><code class="lang-cmake">find_package(gnss_kml_lib REQUIRED)
+target_link_libraries(your_target PRIVATE libgnss++::gnss_kml_lib)</code></pre>
+            </div>
+
+            <div class="tab-content" id="tab-ros2">
+                <h3>Build with colcon</h3>
+<pre><code>cd ~/your_ws/src
+git clone https://github.com/rsasaki0109/ge-drive-visualizer.git
+cd ~/your_ws
+colcon build --packages-select ge_drive_visualizer
+source install/setup.bash</code></pre>
+
+                <h3>Use in your ROS 2 package</h3>
+                <p>Add to your <code>package.xml</code>:</p>
+<pre><code class="lang-xml">&lt;depend&gt;ge_drive_visualizer&lt;/depend&gt;</code></pre>
+                <p>Add to your <code>CMakeLists.txt</code>:</p>
+<pre><code class="lang-cmake">find_package(ge_drive_visualizer REQUIRED)
+ament_target_dependencies(your_node ge_drive_visualizer)</code></pre>
+            </div>
+
+            <div class="tab-content" id="tab-matlab">
+                <h3>Requirements</h3>
+                <ul>
+                    <li>MATLAB (&ge; R2022a)</li>
+                    <li><a href="https://github.com/taroz/MatRTKLIB">MatRTKLIB</a></li>
+                    <li><a href="https://www.google.com/earth/about/versions/#earth-pro">Google Earth Pro</a></li>
+                </ul>
+
+                <h3>Run an example</h3>
+<pre><code class="lang-matlab">% Add MatRTKLIB to path, then run:
+example_vehicle_animation
+% Opens generated .kmz in Google Earth Pro</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture" class="section">
+        <div class="container">
+            <h2 class="section-title">Architecture</h2>
+            <div class="arch-diagram">
+<pre class="arch-pre">
+ge-drive-visualizer/
+&#9500;&#9472;&#9472; include/libgnss++/kml/
+&#9474;   &#9500;&#9472;&#9472; kml.hpp             <span class="arch-comment"># Main header (include this)</span>
+&#9474;   &#9500;&#9472;&#9472; types.hpp           <span class="arch-comment"># Location, Orientation, Color, enums</span>
+&#9474;   &#9500;&#9472;&#9472; utils.hpp           <span class="arch-comment"># col2hex, wrapTo720, enu2llh, ...</span>
+&#9474;   &#9500;&#9472;&#9472; elements.hpp        <span class="arch-comment"># Point, Line, Cube, Model, Overlay</span>
+&#9474;   &#9500;&#9472;&#9472; animation.hpp       <span class="arch-comment"># AnimatedUpdate for Model/Point/Cube</span>
+&#9474;   &#9500;&#9472;&#9472; camera.hpp          <span class="arch-comment"># LookAt, Camera views</span>
+&#9474;   &#9500;&#9472;&#9472; tour.hpp            <span class="arch-comment"># Tour, FlyTo, Folder, Wait wrappers</span>
+&#9474;   &#9492;&#9472;&#9472; writer.hpp          <span class="arch-comment"># KML/KMZ file output</span>
+&#9500;&#9472;&#9472; src/kml/                    <span class="arch-comment"># Implementation files</span>
+&#9500;&#9472;&#9472; examples/                   <span class="arch-comment"># C++ example programs</span>
+&#9500;&#9472;&#9472; tests/                      <span class="arch-comment"># GTest + standalone tests</span>
+&#9500;&#9472;&#9472; CMakeLists.txt              <span class="arch-comment"># CMake + ament_cmake auto-detect</span>
+&#9492;&#9472;&#9472; package.xml                 <span class="arch-comment"># ROS 2 package manifest</span>
+</pre>
+            </div>
+
+            <h3 class="integration-title">Integration with libgnss++</h3>
+            <p>The library uses the <code>libgnss::kml</code> namespace and mirrors the libgnss++ project structure. To integrate:</p>
+<pre><code># Copy headers and sources into gnssplusplus-library:
+cp -r include/libgnss++/kml/  /path/to/gnssplusplus-library/include/libgnss++/kml/
+cp -r src/kml/                /path/to/gnssplusplus-library/src/kml/
+
+# Then add sources to gnssplusplus-library's CMakeLists.txt
+# (same pattern as gnss_visibility_lib)</code></pre>
+        </div>
+    </section>
+
+    <!-- Google Earth Setup -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Google Earth Setup</h2>
+            <div class="setup-steps">
+                <div class="setup-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Open .kmz in Google Earth Pro</h3>
+                        <p>Enable <strong>Photorealistic</strong> and <strong>Terrain</strong> in Layers panel.</p>
+                        <img src="assets/cap1.jpg" alt="Google Earth Layers" loading="lazy">
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Tools &rarr; Movie Maker</h3>
+                        <p>Select <strong>DriveTour</strong>, configure resolution, and save.</p>
+                        <img src="assets/cap2.jpg" alt="Movie Maker" loading="lazy">
+                    </div>
+                </div>
+                <div class="setup-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Create Movie</h3>
+                        <p>Rendering can take a while. Linux is faster than Windows. Use OpenGL mode for best performance.</p>
+                        <img src="assets/cap3.jpg" alt="Create Movie" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Originally created by <a href="https://github.com/taroz">Taro Suzuki</a> (MATLAB).
+                C++ port and ROS 2 integration by <a href="https://github.com/rsasaki0109">rsasaki0109</a>.
+            </p>
+            <p class="footer-links">
+                <a href="https://github.com/rsasaki0109/ge-drive-visualizer">GitHub</a>
+                <span class="footer-sep">&middot;</span>
+                <a href="https://github.com/rsasaki0109/ge-drive-visualizer/issues">Issues</a>
+                <span class="footer-sep">&middot;</span>
+                <a href="https://github.com/taroz/ge-drive-visualizer">Original MATLAB</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Navbar background on scroll
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Show fallback message if demo videos fail to load
+        document.querySelectorAll('.demo-video video').forEach(video => {
+            video.addEventListener('error', () => {
+                const fallback = video.parentElement.querySelector('.demo-video-fallback');
+                if (fallback) fallback.style.display = 'block';
+            }, true);
+        });
+    </script>
+</body>
+</html>
