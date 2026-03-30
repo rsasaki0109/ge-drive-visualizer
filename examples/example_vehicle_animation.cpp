@@ -35,8 +35,11 @@ std::vector<TrajectoryPoint> loadCsv(const std::string& filepath) {
     }
 
     std::string line;
+    bool first = true;
     while (std::getline(ifs, line)) {
         if (line.empty() || line[0] == '#') continue;
+        // Skip header row
+        if (first) { first = false; continue; }
 
         std::istringstream ss(line);
         std::string token;
